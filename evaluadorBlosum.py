@@ -11,12 +11,12 @@ class evaluadorBlosum():
         print(self.matrix)
         
     def getScore(self, A, B):
-        #si alguno de los dos es un gap
-        if A == "-" or B == "-":
-            return -8
-        score = self.matrix[A][B]
-        return score
-    
+        if A == "-" and B == "-":
+            return -12  # penalización más alta por par gap-gap
+        elif A == "-" or B == "-":
+            return -6   # penalización menor que antes por un solo gap
+        else:
+            return self.matrix[A][B]
     
     pass
 
