@@ -4,21 +4,20 @@ class evaluadorBlosum():
     
     def __init__(self):
         matrix = bl.BLOSUM(62)
+        
         self.matrix = matrix
-        self.cache = self._precompute_matrix()
-
-    def _precompute_matrix(self):
-        chars = list(self.matrix.keys()) + ['-']
-        cache = {}
-        for a in chars:
-            for b in chars:
-                if a == '-' or b == '-':
-                    cache[(a, b)] = -8
-                else:
-                    cache[(a, b)] = self.matrix[a][b]
-        return cache
-
+        
+    def showMatrix(self):
+        print(self.matrix)
+        
     def getScore(self, A, B):
-        return self.cache.get((A, B), -8)
+        #si alguno de los dos es un gap
+        if A == "-" or B == "-":
+            return -8
+        score = self.matrix[A][B]
+        return score
+    
+    
+    pass
 
 
